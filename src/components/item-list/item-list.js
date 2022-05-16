@@ -14,7 +14,7 @@ export default class ItemList extends Component {
           Darth Vader
         </li>
         <li className="list-group-item">
-          R2-D24
+          R2-D2
         </li>
       </ul>
     );
