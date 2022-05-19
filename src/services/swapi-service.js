@@ -8,6 +8,7 @@ export default class SwapiService {
         +  `, recived ${res.status}`)
      }
      return  await res.json();  
+     
   }
 
 
