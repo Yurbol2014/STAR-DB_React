@@ -3,14 +3,15 @@
 import React, { Component } from 'react';
 import SwapiService from '../../services/swapi-service'
 import './person-details.css';
-
+import Spinner from '../spinner/spinner'
 
 export default class PersonDetails extends Component {
     
    swapiService = new SwapiService();
 
    state = {
-      person: null
+      person: null,
+      loading: true
    };
 
    componentDidMount(){
@@ -30,23 +31,37 @@ export default class PersonDetails extends Component {
      }
      this.swapiService.getPerson(personId)
      .then((person)=> {
-        this.setState({person});
+        this.setState({person,loading: false});
      })
   }
 
   render() {
-
-     if(!this.state.person){
-        return <span>Select a person from a list</span>
+   const {person} = this.state;
+     const spinner = !this.state.person ? <Spinner/> : null;
+     const content = this.state.person ? <PersonView person = {person}/> : null;
+     
+  
       
-      }
-      const {
-         id,name,gender, birthYear,eyeColor
-      } = this.state.person;
+
+   
 
     return (
       <div className="person-details card">
-        <img className="person-image"
+         {spinner}
+         {content}
+      </div>
+    )
+  }
+
+ 
+}
+const PersonView = ({ person }) => {
+   const {
+      id,name,gender,birthYear,eyeColor
+   } = person;
+   return (
+      <React.Fragment>
+       <img className="person-image"
             src ={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`} 
             alt="character" />
 
@@ -66,8 +81,7 @@ export default class PersonDetails extends Component {
               <span>{eyeColor}</span>
             </li>
           </ul>
-        </div>
-      </div>
-    )
+        </div>  
+      </React.Fragment>
+   )
   }
-}
