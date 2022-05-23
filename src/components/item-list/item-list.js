@@ -15,6 +15,7 @@ export default class ItemList extends Component {
      this.swapiService
      .getAllPeople().then((peopleList) =>{
         this.setState({peopleList});
+        
      });
    }
 
