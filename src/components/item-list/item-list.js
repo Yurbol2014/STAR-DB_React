@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import App from "../app/app";
 import Spinner from "../spinner/spinner";
 import "./item-list.css";
+import PeoplePage from "../people-page";
 
 export default class ItemList extends Component {
   //swapiService = new SwapiService()
 
   state = {
     itemList: null,
+
   };
 
   componentDidMount() {
@@ -18,11 +20,11 @@ export default class ItemList extends Component {
     });
   }
 
-  renderItems(arr) {
+   renderItems=(arr)=> {
     return arr.map((item) => {
       const { id } = item;
 
-      const label = this.props.renderItem(item);
+      const label = this.props.children(item);
       return (
         <li
           className="list-group-item   "

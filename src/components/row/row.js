@@ -4,11 +4,11 @@ import './row.css';
 
 const Row = ({ left, right }) => {
   return (
-    <div className="row mb2">
-      <div className="col-md-6">
+    <div className="row  ">
+      <div className="col-md-6 items">
         {left}
       </div>
-      <div className="col-md-6">
+      <div className="col-md-6   ">
         {right}
       </div>
     </div>
