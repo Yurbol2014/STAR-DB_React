@@ -1,77 +1,66 @@
 
   
 import React, { Component } from 'react';
-import SwapiService from '../../services/swapi-service'
+
+import ErrorButton from '../error-button/error-button';
+import SwapiService from '../../services/swapi-service';
+
 import './item-details.css';
-import Spinner from '../spinner/spinner'
-import ErrorButton from '../error-button/error-button' 
+
+
 
 
 export default class ItemDetails extends Component {
-    
-   swapiService = new SwapiService();
 
-   state = {
-      item: null,
-      loading: true
-   };
+  swapiService = new SwapiService();
 
-   componentDidMount(){
+  state = {
+    item: null,
+    image: null
+  };
+
+  componentDidMount() {
+    this.updateItem();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.itemId !== prevProps.itemId) {
       this.updateItem();
-   }
+    }
+  }
 
-   componentDidUpdate(prevProps){
-      if(this.props.itemId !== prevProps.itemId){
-         this.updateItem();
-      }
-   }
+  updateItem() {
+    const { itemId, getData, getImageUrl } = this.props;
+    if (!itemId) {
+      return;
+    }
 
-   updateItem(){
-     const {itemId}= this.props;
-     if (!itemId){
-        return;
-        
-     }
-     this.swapiService.getPerson(itemId)
-     .then((item)=> {
-        this.setState({item,loading: false});
-       
-     })
+    getData(itemId)
+      .then((item) => {
+        this.setState({
+          item,
+          image: getImageUrl(item)
+        });
+      });
   }
 
   render() {
-   const {item} = this.state;
-     const spinner = !this.state.item ? <Spinner/> : null;
-     const content = this.state.item ? <ItemView item = {item}/> : null;
-     
-  
-      
 
-   
+    const { item, image } = this.state;
+    if (!item) {
+      return <span>Select a item from a list</span>;
+    }
+
+    const { id, name, gender,
+              birthYear, eyeColor } = item;
 
     return (
       <div className="item-details card">
-         {spinner}
-         {content}
-      </div>
-    )
-  }
+        <img className="item-image"
+          src={image}
+          alt="item"/>
 
- 
-}
-const ItemView = ({ item }) => {
-   const {
-      id,name,gender,birthYear,eyeColor
-   } = item;
-   
-   return (
-      <React.Fragment>
-       <img className="item-image"
-            src ={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`} 
-            alt="character" />
-            
-
-        <div className="card-body">
+<div className="card-body">
          <h4>{name}</h4>
           <ul className="list-group list-group-flush">
             <li className="list-group-item">
@@ -89,6 +78,7 @@ const ItemView = ({ item }) => {
           </ul>
           <ErrorButton />
         </div>  
-      </React.Fragment>
-   )
+      </div>
+    );
   }
+}
