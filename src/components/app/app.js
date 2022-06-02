@@ -1,13 +1,9 @@
 import React, { Component } from "react";
-
 import Header from "../header";
 import RandomPlanet from "../random-planet";
 import ErrorBoundry from "../error-boundry";
-
-import Row from "../row/row";
 import ItemDetails, { Record } from "../item-details/item-details";
 import SwapiService from "../../services/swapi-service";
-
 import "./app.css";
 import {
   PersonDetails,
@@ -18,7 +14,11 @@ import {
   StarshipList
 } from "../sw-components";
 
+
+
 export default class App extends Component {
+
+
   swapiService = new SwapiService();
 
   state = {
@@ -75,11 +75,11 @@ export default class App extends Component {
           
           <StarshipDetails itemId={9}/>
 
-          <PersonList>{({ name }) => <span>{name}</span>}</PersonList>
+          <PersonList/>
 
-          <PlanetList>{({ name }) => <span>{name}</span>}</PlanetList>
+          <PlanetList/>
 
-          <StarshipList>{({ name }) => <span>{name}</span>}</StarshipList>
+          <StarshipList/>
 
        
         </div>
