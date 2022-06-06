@@ -1,3 +1,6 @@
+
+Второе приложение своими руками STAR-DB на курсах Юрия Буры по REACT и REDUX
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
