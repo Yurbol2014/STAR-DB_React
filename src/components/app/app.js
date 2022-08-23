@@ -42,7 +42,8 @@ export default class App extends Component {
             
               <Routes>
                 <Route path="/" element={<h2>Welcome to StarDB</h2>} />
-                <Route path="/people" element={<PeoplePage/>} />
+                <Route path="/people" element={<h2>People</h2>} />
+                <Route path="/people/:id?" element={<PeoplePage/>} />
                 <Route path="/planets" element={<PlanetsPage/>} />
                 <Route path="/starships"  element={<StarshipsPage/>} />
                <Route path ="/starships/:id"  element={< StarshipDetails   />} />
@@ -59,16 +60,3 @@ export default class App extends Component {
 }
 
 
-function solution(str, ending){
-
-  
-   let lengthEn= ending.length
-   let res = str.slice('-' + lengthEn)
-
-   console.log(res);
-   if (String(res) === ending || lengthEn===0 ){ return true} else {return false}
-
-
-   
- }
- solution('abc', '')
