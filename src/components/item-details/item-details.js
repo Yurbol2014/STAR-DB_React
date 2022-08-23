@@ -59,7 +59,8 @@ export default class ItemDetails extends Component {
     }
 
     const { name } = item;
-
+    
+    
     return (
       <div className="item-details card">
         <img className="item-image"
