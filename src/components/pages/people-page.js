@@ -1,7 +1,7 @@
 import React from 'react';
 import { PersonDetails, PersonList } from '../sw-components';
 import Row from '../row';
-import { useParams,useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const PeoplePage =()=> {
 const navigate = useNavigate();
